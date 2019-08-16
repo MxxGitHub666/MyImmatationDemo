@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/line"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+</LinearLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto">-->
+    <!--<data>-->
+
+    <!--&lt;!&ndash;<variable&ndash;&gt;-->
+        <!--&lt;!&ndash;name="user"&ndash;&gt;-->
+        <!--&lt;!&ndash;type="com.mxx.myimmatationdemo.bean.UserBean"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<variable&ndash;&gt;-->
+        <!--&lt;!&ndash;name="handler"&ndash;&gt;-->
+        <!--&lt;!&ndash;type="com.mxx.myimmatationdemo.base.ClickHandler"/>&ndash;&gt;-->
+
+<!--</data>-->
+    <!--<LinearLayout-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:orientation="vertical"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--tools:context=".activity.UserActivity"-->
+        <!--android:gravity="center">-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_username"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@{user.firstName}"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="20sp"/>-->
+        <!--<TextView-->
+            <!--android:id="@+id/tv_Lastusername"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@{user.lastName}"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="20sp"/>-->
+
+
+        <!--<Button-->
+            <!--android:id="@+id/btn_dianji"-->
+            <!--android:layout_width="100dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:text="点击"-->
+            <!--android:onClick="@{handler.onClick}"/>-->
+
+        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+            <!--&lt;!&ndash;android:id="@+id/iv_01"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_width="100dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_height="100dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;android:layout_marginTop="30dp"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:url="@{user.img}"&ndash;&gt;-->
+            <!--&lt;!&ndash;app:placeHolder="@{R.mipmap.ic_launcher}"/>&ndash;&gt;-->
+    <!--</LinearLayout>-->
+<!--</layout>-->

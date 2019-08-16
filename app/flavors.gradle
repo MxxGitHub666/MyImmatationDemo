@@ -1,0 +1,17 @@
+def flavorNames = ["define1","define2","define3","define4","define5"]
+def applicationIds = ["gradle.define1","gradle.define2","gradle.define3","gradle.define4","gradle.define5"]
+def appNames =["定制1", "定制2", "定制3", "定制4", "定制5"]
+
+android{
+    flavorDimensions "define"
+    productFlavors{
+        0.upto(flavorNames.size()-1){index->
+            def flavor = flavorNames.get(index)
+            "$flavor"{
+                dimension "define"
+                applicationId applicationIds.get(index)
+                manifestPlaceholders.put("appName", appNames.get(index))
+            }
+        }
+    }
+}

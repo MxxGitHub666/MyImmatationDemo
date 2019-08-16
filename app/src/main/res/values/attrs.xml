@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CMTextView">
+        <attr name="cmTextColor" format="color"></attr>
+        <attr name="cmText" format="color"></attr>
+        <attr name="cmTextSize" format="color"></attr>
+        <attr name="cmTextMaxLength" format="color"></attr>
+    </declare-styleable>
+</resources>
