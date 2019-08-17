@@ -69,7 +69,7 @@ buildscript {
 apply plugin: 'com.jfrog.bintray'
 bintray {
     user = 'tureal'
-    key = "9bcdc8ca07cbf66a65eb46eda208de4c623bce73"
+    key = "key"
     //上传的内容
     publications = ['mavenJava']
     pkg {
