@@ -1,4 +1,4 @@
-package gradle
+package com.myplugin.test
 
 public class FlavorType{
     String resourceDir

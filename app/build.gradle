@@ -126,6 +126,9 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.squareup.okio:okio:1.11.0'
 
+//    compile 'gradle.ResourceFlavorsPlugin.1.0.0'
+//    compile 'com.myplugin.test:ResourceFlavorsPlugin:1.0.0'
+
 
 }
 
