@@ -40,7 +40,7 @@ publishing{
             artifact sourcesJar
             artifact docJar
             groupId 'com.myplugin.test'
-            artifactId 'ResourceFlavorsPlugin'
+            artifactId 'resourceflavorsplugin'
             version '1.0.0'
 
             //pom文件配置
