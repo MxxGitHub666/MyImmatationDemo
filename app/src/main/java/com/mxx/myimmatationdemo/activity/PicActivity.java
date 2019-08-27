@@ -19,8 +19,8 @@ import com.mxx.myimmatationdemo.utils.Utils;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 /**
- * @author gyf
- * @date 2016/10/24
+ * @author mxx
+ * @date 2019/6/24
  */
 public class PicActivity extends SwipeBackActivity {
 

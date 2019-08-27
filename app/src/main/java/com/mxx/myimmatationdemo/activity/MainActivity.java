@@ -1,17 +1,25 @@
 package com.mxx.myimmatationdemo.activity;
 
 
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Px;
 
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.gyf.immersionbar.ImmersionBar;
@@ -32,6 +40,13 @@ import com.mxx.myimmatationdemo.view.CustomViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
+import test.plugin.com.mylibrary.MPermission;
+import test.plugin.com.mylibrary.PermissGroup;
+import test.plugin.com.mylibrary.listener.PermissListener;
+import test.plugin.com.mylibrary.request.PermissionRequest;
+
+import static android.os.Build.VERSION_CODES.M;
+import static android.os.Build.VERSION_CODES.P;
 import static com.mxx.myimmatationdemo.R.id.iv_bg;
 
 
@@ -39,7 +54,7 @@ import static com.mxx.myimmatationdemo.R.id.iv_bg;
  * Created by 98179 on 2019/6/24.
  */
 
-public class MainActivity extends BaseActivity implements DrawerLayout.DrawerListener,View.OnClickListener, ViewPager.OnPageChangeListener{
+public class MainActivity extends BaseActivity implements DrawerLayout.DrawerListener, View.OnClickListener, ViewPager.OnPageChangeListener {
 
     public DrawerLayout drawer;
     private ImageView ivBg;
@@ -51,6 +66,14 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
     private ArrayList<BaseFragment> mFragments;
     private long mFirstPressedTime;
     private List<String> titles = new ArrayList<>();
+    private Context context;
+    private RelativeLayout rl_idCard;
+
+//    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+//            Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
+
+//    // 声明一个集合，在后面的代码中用来存储用户拒绝授权的权
+//    List<String> mPermissionList = new ArrayList<>();
     /**
      * splash页面
      */
@@ -69,15 +92,15 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
         drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         showSplash();
-
         viewPager = findViewById(R.id.viewPager);
         llHome = findViewById(R.id.ll_home);
         llContacts = findViewById(R.id.ll_contacts);
         llMine = findViewById(R.id.ll_mine);
         llVideo = findViewById(R.id.ll_video);
+        rl_idCard = findViewById(R.id.rl_idCard);
 
         SubPagerAdapter pagerAdapter = new SubPagerAdapter(getSupportFragmentManager());
-        pagerAdapter.setData(mFragments,titles);
+        pagerAdapter.setData(mFragments, titles);
         viewPager.setAdapter(pagerAdapter);
         viewPager.setOffscreenPageLimit(4);
         llHome.setSelected(true);
@@ -101,7 +124,54 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
         titles.add("视频");
         titles.add("我的");
 
+//        MPermission.with(mActivity).permiss().permission(PermissGroup.CAMERA,PermissGroup.READ_EXTERNAL_STORAGE,PermissGroup.WRITE_EXTERNAL_STORAGE,PermissGroup.RECORD_AUDIO).listener(new PermissListener<String>() {
+//            @Override
+//            public void onGranted(List<String> list) {
+//                Toast.makeText(mActivity,"权限申请成功",Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onDenied(List<String> list) {
+//                Toast.makeText(mActivity,"权限被拒绝",Toast.LENGTH_SHORT).show();
+//            }
+//        }).start();
+
+
+//        for (int i = 0; i < permissions.length; i++) {
+////            if (Build.VERSION.SDK_INT >= 23) {
+//                if (ContextCompat.checkSelfPermission(this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
+//                    mPermissionList.add(permissions[i]);
+////                }
+//            }
+//
+//            //未授予的权限为空，表示都授予了
+//            if (mPermissionList.isEmpty()) {
+//
+//            } else {
+//                String[] permissions = mPermissionList.toArray(new String[mPermissionList.size()]);
+//                ActivityCompat.requestPermissions(MainActivity.this, permissions, 100);
+//            }
+//        }
+
     }
+
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+//        if (requestCode == 100) {
+//            for (int i = 0; i < grantResults.length; i++) {
+//                if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+//                    boolean showRequestPermission = ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i]);
+//                    if (showRequestPermission) {
+//                        showPermissionDialog();
+//                    }
+//                }
+//            }
+//        }
+//
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+//    }
+
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
@@ -119,6 +189,7 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
         llMine.setOnClickListener(this);
         viewPager.addOnPageChangeListener(this);
         ivBg.setOnClickListener(this);
+        rl_idCard.setOnClickListener(this);
     }
 
 
@@ -164,7 +235,7 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
 
     @Override
     public void onDrawerClosed(@NonNull View view) {
-            GlideUtils.loadBlurry(ivBg, Utils.getPic());
+        GlideUtils.loadBlurry(ivBg, Utils.getPic());
 
     }
 
@@ -229,8 +300,12 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
                 tabSelected(llMine);
                 break;
             case R.id.iv_bg:
-                Intent intent = new Intent(this,NewsActivity.class);
+                Intent intent = new Intent(this, NewsActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.rl_idCard:
+                Intent intent2 = new Intent(this, IDCardActivity.class);
+                startActivity(intent2);
                 break;
             default:
                 break;
@@ -269,5 +344,42 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
             }
         }
     }
+
+//    AlertDialog mPermissionDialog;
+//    String mPackName = "com.mxx.myimmatationdemo";
+//
+//    public void showPermissionDialog() {
+//        if (mPermissionDialog == null) {
+//            mPermissionDialog = new AlertDialog.Builder(this)
+//                    .setMessage("已禁用权限，请手动授予")
+//                    .setPositiveButton("设置", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            cancelPermissionDialog();
+//
+//                            Intent localIntent = new Intent("miui.intent.action.APP_PERM_EDITOR");
+//                            localIntent.setClassName("com.miui.securitycenter", "com.miui.permcenter.permissions.PermissionsEditorActivity");
+//                            localIntent.putExtra("extra_pkgname", mPackName);
+//                            startActivity(localIntent);
+//
+//                        }
+//                    })
+//                    .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            //关闭页面或者做其他操作
+//                            cancelPermissionDialog();
+//                        }
+//                    }).create();
+//
+//        }
+//        mPermissionDialog.show();
+//    }
+//
+//    //关闭对话框
+//    private void cancelPermissionDialog() {
+//        mPermissionDialog.cancel();
+//    }
+
 
 }

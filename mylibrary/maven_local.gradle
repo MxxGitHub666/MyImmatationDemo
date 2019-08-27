@@ -1,0 +1,24 @@
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.version = '1.0.0'
+            pom.artifactId = 'mylibrarylocal'
+            pom.groupId = 'test.plugin.com.mylibrary'
+            repository(url: uri('../repos'))
+//            repository(url: "file:///Users/98179/.m2/repository/")
+        }
+    }
+
+}
+
+//group = 'com.gradle'
+//archivesBaseName = 'mo-plugin'
+//version = "1.0.0"
+//uploadArchives{
+//    repositories{
+//        mavenDeployer {
+//            repository(url: uri('../repos'))
+//        }
+//    }
+//}

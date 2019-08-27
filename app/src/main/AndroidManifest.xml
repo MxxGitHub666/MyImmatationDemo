@@ -6,6 +6,17 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="true"/>
+
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
@@ -22,6 +33,20 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup"
         android:networkSecurityConfig="@xml/network_security_config">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.ch.cpermission.FileProvider"
+            android:exported="false"
+            android:supportsRtl="true"
+            android:grantUriPermissions="true"
+            tools:replace="android:authorities">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="android:resource" />
+        </provider>
+
         <!-- 适配全面屏 -->
         <meta-data
             android:name="android.max_aspect"
@@ -73,9 +98,13 @@
         <activity
             android:name=".activity.ConstraintActivity"
             android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden" />
-        <!--<activity-->
-            <!--android:name=".activity.Main2Activity"-->
-            <!--android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden" />-->
+        <activity
+            android:name=".activity.VideoActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden" />
+        <activity
+            android:name=".activity.IDCardActivity"
+            android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden" />
     </application>
 
 

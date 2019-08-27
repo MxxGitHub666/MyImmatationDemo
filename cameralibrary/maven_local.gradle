@@ -1,0 +1,13 @@
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            pom.version = '1.0.0'
+            pom.artifactId = 'cameralibrarylocal'
+            pom.groupId = 'test.plugin.com.cameralibrary'
+            repository(url: uri('../repos'))
+//            repository(url: "file:///Users/98179/.m2/repository/")
+        }
+    }
+
+}
