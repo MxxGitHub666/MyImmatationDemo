@@ -10,7 +10,6 @@ import android.util.Log;
 
 import java.util.Calendar;
 
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by 98179 on 2019/8/26.
@@ -18,6 +17,7 @@ import static android.content.ContentValues.TAG;
  */
 
 public class SensorControler implements SensorEventListener {
+    private String TAG ="SensorControler";
 
     private SensorManager mSensorManager;
     private Sensor        mSensor;
@@ -39,6 +39,7 @@ public class SensorControler implements SensorEventListener {
 
 
     private SensorControler(Context context) {
+        //获取服务
         mSensorManager = (SensorManager) context.getSystemService(Activity.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);// TYPE_GRAVITY
     }
@@ -70,6 +71,7 @@ public class SensorControler implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        Log.e(TAG,"onSensorChanged");
 
 
         if (event.sensor == null) {
@@ -85,6 +87,9 @@ public class SensorControler implements SensorEventListener {
             int x = (int) event.values[0];
             int y = (int) event.values[1];
             int z = (int) event.values[2];
+
+//            Log.i(TAG," x:"+ x + "  y:"+y+"  z"+z);
+
             mCalendar = Calendar.getInstance();
             long stamp = mCalendar.getTimeInMillis();// 1393844912
 
@@ -94,16 +99,17 @@ public class SensorControler implements SensorEventListener {
                 int px = Math.abs(mX - x);
                 int py = Math.abs(mY - y);
                 int pz = Math.abs(mZ - z);
-                //                Log.d(TAG, "pX:" + px + "  pY:" + py + "  pZ:" + pz + "    stamp:"
-                //                        + stamp + "  second:" + second);
+//                Log.d(TAG, "pX:" + px + "  pY:" + py + "  pZ:" + pz + "    stamp:"
+//                        + stamp + "  second:" + second);
                 double value = Math.sqrt(px * px + py * py + pz * pz);
+//                Log.d(TAG,"value:"+value);
                 if (value > 1.4) {
-                    //                    textviewF.setText("检测手机在移动..");
-                    //                    Log.i(TAG,"mobile moving");
+//                    Log.i(TAG,"检测手机在移动..");
+//                                        Log.i(TAG,"mobile moving");
                     STATUE = STATUS_MOVE;
                 } else {
-                    //                    textviewF.setText("检测手机静止..");
-                    //                    Log.i(TAG,"mobile static");
+//                    Log.i(TAG,"检测手机静止..");
+//                    Log.i(TAG,"mobile static");
                     //上一次状态是move，记录静态时间点
                     if (STATUE == STATUS_MOVE) {
                         lastStaticStamp = stamp;
@@ -111,6 +117,7 @@ public class SensorControler implements SensorEventListener {
                     }
 
                     if (canFocusIn) {
+//                        Log.e(TAG,"stamp:"+ stamp  +"     lastStaticStamp:"+lastStaticStamp);
                         if (stamp - lastStaticStamp > DELEY_DURATION) {
                             //移动后静止一段时间，可以发生对焦行为
                             if (!isFocusing) {

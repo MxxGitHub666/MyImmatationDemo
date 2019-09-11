@@ -23,7 +23,7 @@ public class IDCardCamera {
     private WeakReference<Activity> mActivity;
     private WeakReference<Fragment> mFragment;
 
-    public static IDCardCamera creat(Activity activity){
+    public static IDCardCamera create(Activity activity){
         return new IDCardCamera(activity);
     }
 

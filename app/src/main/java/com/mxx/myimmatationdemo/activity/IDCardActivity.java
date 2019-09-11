@@ -40,15 +40,16 @@ public class IDCardActivity extends BaseActivity {
      * 身份证正面
      */
     public void front(View view) {
-        IDCardCamera.creat(this).openCamera(IDCardCamera.TYPE_IDCARD_FRONT);
+        IDCardCamera.create(this).openCamera(IDCardCamera.TYPE_IDCARD_FRONT);
     }
 
     /**
      * 身份证反面
      */
     public void back(View view) {
-        IDCardCamera.creat(this).openCamera(IDCardCamera.TYPE_IDCARD_BACK);
+        IDCardCamera.create(this).openCamera(IDCardCamera.TYPE_IDCARD_BACK);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

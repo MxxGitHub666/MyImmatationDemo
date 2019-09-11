@@ -22,7 +22,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
     private static String TAG = CameraPreview.class.getName();
 
     private Camera           camera;
-    private AutoFocusManager mAutoFocusManager;
+//    private AutoFocusManager mAutoFocusManager;
     private SensorControler  mSensorControler;
     private Context          mContext;
     private SurfaceHolder    mSurfaceHolder;
@@ -166,10 +166,10 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
             camera.release();
             camera = null;
 
-            if (mAutoFocusManager != null) {
-                mAutoFocusManager.stop();
-                mAutoFocusManager = null;
-            }
+//            if (mAutoFocusManager != null) {
+//                mAutoFocusManager.stop();
+//                mAutoFocusManager = null;
+//            }
         }
     }
 

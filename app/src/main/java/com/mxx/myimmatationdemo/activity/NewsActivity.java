@@ -205,8 +205,8 @@ public class NewsActivity extends BaseActivity  implements DrawerLayout.DrawerLi
                         startActivity(intent);
                         break;
                     case 6:
-//                        intent = new Intent(NewsActivity.this,Main2Activity.class);
-//                        startActivity(intent);
+                        intent = new Intent(NewsActivity.this,TestActivity.class);
+                        startActivity(intent);
                         break;
 
                     default:

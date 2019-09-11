@@ -1,21 +1,14 @@
 package com.mxx.myimmatationdemo.activity;
 
 
-import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Px;
-
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,6 +26,7 @@ import com.mxx.myimmatationdemo.fragment.three.CategoryThreeFragment;
 import com.mxx.myimmatationdemo.fragment.three.HomeThreeFragment;
 import com.mxx.myimmatationdemo.fragment.three.MineThreeFragment;
 import com.mxx.myimmatationdemo.fragment.three.VideoThreeFragment;
+import com.mxx.myimmatationdemo.ui.main.activity.LoginActivity;
 import com.mxx.myimmatationdemo.utils.GlideUtils;
 import com.mxx.myimmatationdemo.utils.Utils;
 import com.mxx.myimmatationdemo.view.CustomViewPager;
@@ -40,13 +34,6 @@ import com.mxx.myimmatationdemo.view.CustomViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-import test.plugin.com.mylibrary.MPermission;
-import test.plugin.com.mylibrary.PermissGroup;
-import test.plugin.com.mylibrary.listener.PermissListener;
-import test.plugin.com.mylibrary.request.PermissionRequest;
-
-import static android.os.Build.VERSION_CODES.M;
-import static android.os.Build.VERSION_CODES.P;
 import static com.mxx.myimmatationdemo.R.id.iv_bg;
 
 
@@ -67,7 +54,7 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
     private long mFirstPressedTime;
     private List<String> titles = new ArrayList<>();
     private Context context;
-    private RelativeLayout rl_idCard;
+    private RelativeLayout rl_idCard,rl_login;
 
 //    String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
 //            Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO};
@@ -98,6 +85,7 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
         llMine = findViewById(R.id.ll_mine);
         llVideo = findViewById(R.id.ll_video);
         rl_idCard = findViewById(R.id.rl_idCard);
+        rl_login = findViewById(R.id.rl_login);
 
         SubPagerAdapter pagerAdapter = new SubPagerAdapter(getSupportFragmentManager());
         pagerAdapter.setData(mFragments, titles);
@@ -190,6 +178,7 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
         viewPager.addOnPageChangeListener(this);
         ivBg.setOnClickListener(this);
         rl_idCard.setOnClickListener(this);
+        rl_login.setOnClickListener(this);
     }
 
 
@@ -306,6 +295,10 @@ public class MainActivity extends BaseActivity implements DrawerLayout.DrawerLis
             case R.id.rl_idCard:
                 Intent intent2 = new Intent(this, IDCardActivity.class);
                 startActivity(intent2);
+                break;
+                case R.id.rl_login:
+                Intent intent3 = new Intent(this, LoginActivity.class);
+                startActivity(intent3);
                 break;
             default:
                 break;
