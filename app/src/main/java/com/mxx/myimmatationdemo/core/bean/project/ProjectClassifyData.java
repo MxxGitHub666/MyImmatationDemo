@@ -71,4 +71,16 @@ public class ProjectClassifyData {
     public void setVisible(int visible) {
         this.visible = visible;
     }
+
+    @Override
+    public String toString() {
+        return "ProjectClassifyData{" +
+                "courseId=" + courseId +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", order=" + order +
+                ", parentChapterId=" + parentChapterId +
+                ", visible=" + visible +
+                '}';
+    }
 }

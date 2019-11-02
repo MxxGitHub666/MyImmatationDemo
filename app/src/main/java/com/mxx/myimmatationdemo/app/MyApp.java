@@ -44,18 +44,24 @@ public class MyApp extends Application implements HasActivityInjector {
     private static MyApp instance;
     private RefWatcher refWatcher;
     private static volatile AppComponent appComponent;
+    public static boolean isFirstRun = true;
 
+    //static 代码段可以防止内存泄露, 全局设置刷新头部及尾部，优先级最低
     static {
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO);
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
-           layout.setPrimaryColorsId(R.color.colorPrimary,R.color.white);
-           return new DeliveryHeader(context);
+            //全局设置主题颜色
+            layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white);
+            //指定为Delivery Header，默认是贝塞尔雷达Header
+            return new DeliveryHeader(context);
         });
-
         SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
-            return new BallPulseFooter(context).setAnimatingColor(ContextCompat.getColor(context,R.color.colorPrimary));
+            //默认是 BallPulseFooter
+            return new BallPulseFooter(context).setAnimatingColor(ContextCompat.getColor(context, R.color.colorPrimary));
         });
     }
+
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
@@ -119,7 +125,7 @@ public class MyApp extends Application implements HasActivityInjector {
         SQLiteDatabase database = devOpenHelper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(database);
         mDaoSession = daoMaster.newSession();
-    }
+}
     public DaoSession getDaoSession() {
         return mDaoSession;
     }

@@ -1,6 +1,7 @@
 package com.mxx.myimmatationdemo.presenter.main;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.mxx.myimmatationdemo.R;
 import com.mxx.myimmatationdemo.app.MyApp;
@@ -39,6 +40,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
                             setLoginAccount(loginData.getUsername());
                             setLoginPassword(loginData.getPassword());
                             setLoginStatus(true);
+                            Log.e("getLoginStatus : ",getLoginStatus()+"");
                             RxBus.getDefault().post(new LoginEvent(true));
                             mView.showLoginSuccess();
                         }

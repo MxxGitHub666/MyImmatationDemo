@@ -3,6 +3,8 @@ package com.mxx.myimmatationdemo.di.component;
 import com.mxx.myimmatationdemo.app.MyApp;
 import com.mxx.myimmatationdemo.core.DataManager;
 import com.mxx.myimmatationdemo.di.module.AbstractAllActivityModule;
+import com.mxx.myimmatationdemo.di.module.AbstractAllDialogFragmentModule;
+import com.mxx.myimmatationdemo.di.module.AbstractAllFragmentModule;
 import com.mxx.myimmatationdemo.di.module.AppModule;
 import com.mxx.myimmatationdemo.di.module.HttpModule;
 
@@ -17,6 +19,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
 @Component(modules = {AndroidInjectionModule.class,
         AndroidSupportInjectionModule.class,
         AbstractAllActivityModule.class,
+        AbstractAllFragmentModule.class,
+        AbstractAllDialogFragmentModule.class,
         AppModule.class,
         HttpModule.class})
 public interface AppComponent {

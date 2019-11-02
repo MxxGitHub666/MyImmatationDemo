@@ -25,6 +25,7 @@
     <string name="no">NO</string>
     <string name="reload">Reload</string>
 
+
     //Login
     <string name="login_title">Login Password</string>
     <string name="login_account_tint">Please enter user name</string>
